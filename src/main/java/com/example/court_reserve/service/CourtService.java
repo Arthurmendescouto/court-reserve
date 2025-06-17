@@ -24,11 +24,11 @@ public class CourtService {
         return repository.findById(id);
     }
 
-    public Court saveCourt(Court court){
+    public Court save(Court court){
         return repository.save(court);
     }
 
-    public void  deleteByCourt(Long id){
+    public void  delete(Long id){
         repository.deleteById(id);
     }
 }

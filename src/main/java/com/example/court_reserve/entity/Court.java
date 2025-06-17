@@ -15,11 +15,11 @@ public class Court {
     private Long id;
     @Enumerated(EnumType.STRING)
     private SportType sportType;
-    private Double courtValue;
+    private Double pricePerHour;
     private boolean isAvailable;
 
     public void saveCourt(Court court){
-        if (court.getCourtValue()<0){
+        if (court.getPricePerHour()<0){
         throw new IllegalArgumentException("Court value cannot be negative");
         }
     }

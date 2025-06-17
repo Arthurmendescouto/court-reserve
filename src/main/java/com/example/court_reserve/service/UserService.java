@@ -21,11 +21,11 @@ public class UserService {
         return repository.findById(id);
     }
 
-    public User saveUser(User user){
+    public User save(User user){
         return repository.save(user);
     }
 
-    public void  deleteByUser(Long id){
+    public void  delete(Long id){
         repository.deleteById(id);
     }
 }

@@ -22,11 +22,11 @@ public class BookingService {
         return repository.findById(id);
     }
 
-    public Booking saveBooking(Booking booking){
+    public Booking save(Booking booking){
         return repository.save(booking);
     }
 
-    public void  deleteByBooking(Long id){
+    public void  delete(Long id){
          repository.deleteById(id);
     }
 }
