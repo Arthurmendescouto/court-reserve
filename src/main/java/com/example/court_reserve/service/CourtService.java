@@ -1,5 +1,6 @@
 package com.example.court_reserve.service;
 
+import com.example.court_reserve.controller.request.CourtRequest;
 import com.example.court_reserve.entity.Booking;
 import com.example.court_reserve.entity.Court;
 import com.example.court_reserve.entity.User;
@@ -30,5 +31,21 @@ public class CourtService {
 
     public void  delete(Long id){
         repository.deleteById(id);
+    }
+    public Court updateCourt(Long id, CourtRequest request) {
+
+        Court court = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Court não encontrado para o id: " + id));
+
+        if (request.sportType() != null) {
+            court.setSportType(request.sportType());
+        }
+        if (request.pricePerHour() != null) {
+            court.setPricePerHour(request.pricePerHour());
+        }
+        if (request.isAvailable() != null) {
+            court.setAvailable(request.isAvailable());
+        }
+        return repository.save(court);
     }
 }

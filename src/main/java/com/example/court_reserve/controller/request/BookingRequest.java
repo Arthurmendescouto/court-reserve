@@ -4,5 +4,5 @@ import com.example.court_reserve.entity.Court;
 
 import java.time.LocalDateTime;
 
-public record BookingRequest( Long bookingId, LocalDateTime startDateTime,LocalDateTime endDateTime) {
+public record BookingRequest(Long userId, Long courtId, LocalDateTime startDateTime, LocalDateTime endDateTime) {
 }

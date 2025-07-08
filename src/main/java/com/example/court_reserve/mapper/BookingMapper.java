@@ -19,11 +19,24 @@ public class BookingMapper {
                 .build();
     }
     public static BookingResponse toBookingResponse(Booking booking){
-        return BookingResponse
-                .builder()
-                .id(booking.getId())
-                .startDateTime(booking.getStartDateTime())
-                .endDateTime(booking.getEndDateTime())
-                .build();
+        User user=booking.getUser();
+        Court court=booking.getCourt();
+
+        BookingResponse.UserInfo userInfo=new BookingResponse.UserInfo(
+                user.getId(),
+                user.getEmail()
+        );
+        BookingResponse.CourtInfo courtInfo = new BookingResponse.CourtInfo(
+                court.getId(),
+                court.getSportType(),
+                court.getPricePerHour()
+        );
+        return new BookingResponse(
+                booking.getId(),
+                booking.getStartDateTime(),
+                booking.getEndDateTime(),
+                userInfo,
+                courtInfo
+        );
     }
 }

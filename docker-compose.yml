@@ -3,9 +3,9 @@ services:
     image: postgres:latest
     container_name: courtReserve
     environment:
-      POSTGRES_DB: ${DATABASE_NAME}
-      POSTGRES_USER: ${DATABASE_USERNAME}
-      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: court_reserve
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
     ports:
-      - "5431:5432"
-    restart: no
+      - "5432:5432"
+    restart: unless-stopped

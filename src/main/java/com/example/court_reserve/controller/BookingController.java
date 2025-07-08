@@ -42,20 +42,29 @@ public class BookingController {
     }
     @PostMapping
     public ResponseEntity<BookingResponse> saveBooking(@RequestBody BookingRequest request){
-        Court court=courtService.findById(request.bookingId())
+        Court court=courtService.findById(request.courtId())
                 .orElseThrow(()->new RuntimeException("Quadra não encontrada"));
 
-        User user=userService.findById(request.bookingId())
+        User user=userService.findById(request.userId())
                 .orElseThrow(()->new RuntimeException("Usuário não encontrado"));
         Booking booking=BookingMapper.toBooking(request,court,user);
         Booking saved=bookingService.save(booking);
         return ResponseEntity.ok(BookingMapper.toBookingResponse(saved));
     }
-    @DeleteMapping
+    @PatchMapping("/{id}")
+    public ResponseEntity<BookingResponse> updateBooking(
+            @PathVariable Long id,
+            @RequestBody BookingRequest request) {
+
+        Booking updatedBooking = bookingService.update(id, request);
+        return ResponseEntity.ok(BookingMapper.toBookingResponse(updatedBooking));
+    }
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteByBookingId(@PathVariable Long id){
         bookingService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
 
 
 }

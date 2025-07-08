@@ -46,4 +46,9 @@ public class UserController {
         userService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+    @PatchMapping("/{id}/password")
+    public ResponseEntity<Void> updatePassword(@PathVariable Long id, @RequestBody UserRequest request) {
+        userService.updatePassword(id, request);
+        return ResponseEntity.noContent().build();
+    }
 }

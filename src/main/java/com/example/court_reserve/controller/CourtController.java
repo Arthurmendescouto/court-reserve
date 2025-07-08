@@ -52,6 +52,10 @@ public class CourtController {
         courtService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
+    @PatchMapping("/{id}")
+    public ResponseEntity<CourtResponse> patchCourt(@PathVariable Long id, @RequestBody CourtRequest request) {
+        Court updatedCourt = courtService.updateCourt(id, request);
+        return ResponseEntity.ok(CourtMapper.toCourtResponse(updatedCourt));
+    }
 
 }
