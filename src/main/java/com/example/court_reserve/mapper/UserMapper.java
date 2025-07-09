@@ -12,7 +12,7 @@ public class UserMapper {
    public static User toUser(UserRequest request){
       if (request == null) return null;
       return User.builder()
-              .id(request.userId())
+              .name(request.name())
               .email(request.email())
               .password(request.password())
               .build();
@@ -21,6 +21,7 @@ public class UserMapper {
       if(user==null) return null;
       return UserResponse.builder()
               .id(user.getId())
+              .name(user.getName())
               .email(user.getEmail().trim())
               .build();
    }

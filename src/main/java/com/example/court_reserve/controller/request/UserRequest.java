@@ -1,5 +1,5 @@
 package com.example.court_reserve.controller.request;
 
-public record UserRequest(Long userId, String email,String password) {
+public record UserRequest(String name, String email,String password) {
 
 }

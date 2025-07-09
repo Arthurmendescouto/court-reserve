@@ -4,6 +4,7 @@ import com.example.court_reserve.controller.request.UserRequest;
 import com.example.court_reserve.entity.User;
 import com.example.court_reserve.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
     public List<User> findAll(){
         return repository.findAll();
@@ -23,6 +25,8 @@ public class UserService {
     }
 
     public User save(User user){
+        String password=user.getPassword();
+        user.setPassword(passwordEncoder.encode(password));
         return repository.save(user);
     }
 
