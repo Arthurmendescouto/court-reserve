@@ -1,9 +1,11 @@
 package com.example.court_reserve.service;
 
+import com.example.court_reserve.config.JWTUserData;
 import com.example.court_reserve.controller.request.BookingRequest;
 import com.example.court_reserve.entity.Booking;
 import com.example.court_reserve.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -32,6 +34,7 @@ public class BookingService {
     }
 
     public Booking update(Long id, BookingRequest request) {
+
 
         Booking existingBooking = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reserva não encontrada com o ID: " + id));

@@ -34,6 +34,8 @@ public class CourtService {
     }
     public Court updateCourt(Long id, CourtRequest request) {
 
+
+
         Court court = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Court não encontrado para o id: " + id));
 
