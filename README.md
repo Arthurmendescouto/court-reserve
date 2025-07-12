@@ -60,6 +60,7 @@ Primeiro, crie uma conta. Este endpoint é público.
 POST /court_reserve/auth/register
 Body (JSON):
 json{
+
     "email": "meu-email@exemplo.com",
     "password": "minha-senha-segura"
 }
@@ -71,11 +72,13 @@ Envie as credenciais do usuário registrado para obter um token de acesso.
 POST /court_reserve/auth/login
 Body (JSON):
 json{
+
     "email": "meu-email@exemplo.com",
     "password": "minha-senha-segura"
 }
 Resposta de Sucesso (JSON):
 json{
+
     "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ..." // Token JWT longo
 }
 
@@ -86,64 +89,91 @@ Endpoints Protegidos (Exemplos)
 Nota: Todos os endpoints abaixo exigem o Bearer Token no cabeçalho Authorization.
 Usuários (/users)
 
-GET /court_reserve/users - Lista todos os usuários
-GET /court_reserve/users/{id} - Busca um usuário por ID
-POST /court_reserve/users - Cria um novo usuário
+GET /court_reserve/users
+- Lista todos os usuários
+GET /court_reserve/users/{id}
+ - Busca um usuário por ID
+POST /court_reserve/users
+- Cria um novo usuário
 Body (JSON):
+
 json{
+
     "email": "usuario@exemplo.com",
     "password": "senha123"
+    
 }
 
-DELETE /court_reserve/users/{id} - Deleta um usuário por ID
-PATCH /court_reserve/users/{id}/password - Atualiza a senha do usuário
+DELETE /court_reserve/users/{id}
+- Deleta um usuário por ID
+PATCH /court_reserve/users/{id}/password
+- Atualiza a senha do usuário
 Body (JSON):
+
 json{
+
     "password": "nova-senha-segura"
 }
 
 Quadras (/courts)
 
-GET /court_reserve/courts - Lista todas as quadras
-GET /court_reserve/courts/{id} - Busca uma quadra por ID
-POST /court_reserve/courts - Cria uma nova quadra
+GET /court_reserve/courts
+- Lista todas as quadras
+GET /court_reserve/courts/{id}
+ - Busca uma quadra por ID
+POST /court_reserve/courts
+ - Cria uma nova quadra
 Body (JSON):
+
 json{
+
     "name": "Quadra de Futebol 1",
     "sportType": "FOOTBALL",
     "description": "Quadra de futebol com grama sintética"
 }
 
-PATCH /court_reserve/courts/{id} - Atualiza uma quadra
+PATCH /court_reserve/courts/{id}
+- Atualiza uma quadra
 Body (JSON):
+
 json{
+
     "name": "Quadra de Futebol 1 - Atualizada",
     "description": "Quadra reformada com nova iluminação"
 }
 
-DELETE /court_reserve/courts/{id} - Deleta uma quadra
+DELETE /court_reserve/courts/{id} 
+- Deleta uma quadra
 
 Agendamentos (/bookings)
 
-GET /court_reserve/bookings - Lista todos os agendamentos
-GET /court_reserve/bookings/{id} - Busca um agendamento por ID
-POST /court_reserve/bookings - Cria um novo agendamento
+GET /court_reserve/bookings 
+- Lista todos os agendamentos
+GET /court_reserve/bookings/{id}
+ - Busca um agendamento por ID
+POST /court_reserve/bookings
+- Cria um novo agendamento
 Body (JSON):
+
 json{
+
     "courtId": 1,
     "userId": 1,
     "startTime": "2024-12-15T10:00:00",
     "endTime": "2024-12-15T11:00:00"
 }
 
-PATCH /court_reserve/bookings/{id} - Atualiza um agendamento
+PATCH /court_reserve/bookings/{id} 
+- Atualiza um agendamento
 Body (JSON):
+
 json{
     
     "endTime": "2024-12-15T15:00:00"
 }
 
-DELETE /court_reserve/bookings/{id} - Cancela um agendamento
+DELETE /court_reserve/bookings/{id} 
+- Cancela um agendamento
 
 📜 Licença
 Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
