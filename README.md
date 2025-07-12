@@ -88,7 +88,8 @@ Passo 3: Acessar Endpoints Protegidos
 Copie o token recebido e use-o para acessar todos os outros endpoints. No Postman acesse Auth e preencha Auth Type como "Bearer Token" e cole o token.
 Endpoints Protegidos (Exemplos)
 Nota: Todos os endpoints abaixo exigem o Bearer Token no cabeçalho Authorization.
-Usuários (/users)
+
+##Usuários (/users)
 
 GET /court_reserve/users
 Lista todos os usuários
@@ -119,7 +120,7 @@ json{
     "password": "nova-senha-segura"
 }
 
-Quadras (/courts)
+##Quadras (/courts)
 
 GET /court_reserve/courts
 Lista todas as quadras
@@ -151,7 +152,7 @@ Atualiza uma quadra
 DELETE /court_reserve/courts/{id} 
 Deleta uma quadra
 
-Agendamentos (/bookings)
+##Agendamentos (/bookings)
 
 GET /court_reserve/bookings 
 Lista todos os agendamentos
