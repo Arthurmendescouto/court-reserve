@@ -91,11 +91,13 @@ Nota: Todos os endpoints abaixo exigem o Bearer Token no cabeçalho Authorizatio
 Usuários (/users)
 
 GET /court_reserve/users
-- Lista todos os usuários
+Lista todos os usuários
+
 GET /court_reserve/users/{id}
- - Busca um usuário por ID
+Busca um usuário por ID
+
 POST /court_reserve/users
-- Cria um novo usuário
+Cria um novo usuário
 Body (JSON):
 
 json{
@@ -106,9 +108,10 @@ json{
 }
 
 DELETE /court_reserve/users/{id}
-- Deleta um usuário por ID
+Deleta um usuário por ID
+
 PATCH /court_reserve/users/{id}/password
-- Atualiza a senha do usuário
+Atualiza a senha do usuário
 Body (JSON):
 
 json{
@@ -119,9 +122,11 @@ json{
 Quadras (/courts)
 
 GET /court_reserve/courts
-- Lista todas as quadras
+Lista todas as quadras
+
 GET /court_reserve/courts/{id}
- - Busca uma quadra por ID
+Busca uma quadra por ID
+
 POST /court_reserve/courts
  - Cria uma nova quadra
 Body (JSON):
@@ -134,35 +139,37 @@ json{
 }
 
 PATCH /court_reserve/courts/{id}
-- Atualiza uma quadra
-Body (JSON):
+Atualiza uma quadra
+   Body (JSON):
 
-json{
-
+   json{
+   
     "name": "Quadra de Futebol 1 - Atualizada",
     "description": "Quadra reformada com nova iluminação"
-}
+   }
 
 DELETE /court_reserve/courts/{id} 
-- Deleta uma quadra
+Deleta uma quadra
 
 Agendamentos (/bookings)
 
 GET /court_reserve/bookings 
-- Lista todos os agendamentos
+Lista todos os agendamentos
+
 GET /court_reserve/bookings/{id}
- - Busca um agendamento por ID
+Busca um agendamento por ID
+
 POST /court_reserve/bookings
-- Cria um novo agendamento
+Cria um novo agendamento
 Body (JSON):
 
-json{
+   json{
 
     "courtId": 1,
     "userId": 1,
     "startTime": "2024-12-15T10:00:00",
     "endTime": "2024-12-15T11:00:00"
-}
+   }
 
 PATCH /court_reserve/bookings/{id} 
 - Atualiza um agendamento
