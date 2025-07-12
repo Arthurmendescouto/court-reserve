@@ -89,7 +89,7 @@ Copie o token recebido e use-o para acessar todos os outros endpoints. No Postma
 Endpoints Protegidos (Exemplos)
 Nota: Todos os endpoints abaixo exigem o Bearer Token no cabeçalho Authorization.
 
-##Usuários (/users)
+Usuários (/users)
 
 GET /court_reserve/users
 Lista todos os usuários
