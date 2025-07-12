@@ -70,6 +70,7 @@ Passo 2: Fazer Login para Gerar o Token
 Envie as credenciais do usuário registrado para obter um token de acesso.
 
 POST /court_reserve/auth/login
+
 Body (JSON):
 json{
 
