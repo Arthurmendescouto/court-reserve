@@ -44,7 +44,9 @@ Siga os passos abaixo para configurar e rodar o ambiente de desenvolvimento loca
    cd court-reserve
 
 Inicie o banco de dados com Docker:
+```bash
  docker-compose up -d
+```
 
 Execute a aplicação Spring Boot.
 
