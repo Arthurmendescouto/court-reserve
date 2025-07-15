@@ -44,7 +44,7 @@ Siga os passos abaixo para configurar e rodar o ambiente de desenvolvimento loca
    cd court-reserve
 
 Inicie o banco de dados com Docker:
-bashdocker-compose up -d
+ docker-compose up -d
 
 Execute a aplicação Spring Boot:
 bash./mvnw spring-boot:run
