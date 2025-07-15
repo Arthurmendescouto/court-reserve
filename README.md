@@ -46,8 +46,7 @@ Siga os passos abaixo para configurar e rodar o ambiente de desenvolvimento loca
 Inicie o banco de dados com Docker:
  docker-compose up -d
 
-Execute a aplicação Spring Boot:
-bash./mvnw spring-boot:run
+Execute a aplicação Spring Boot.
 
 Pronto! A API estará rodando em http://localhost:8080
 
