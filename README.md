@@ -1,10 +1,10 @@
-# CourtReserve API 🏀🎾⚽
+# CourtReserve API 
 
 ## Sobre o Projeto
 
 O **CourtReserve** é uma API RESTful completa e segura, desenvolvida em Java com Spring Boot, para um sistema de gerenciamento e reserva de quadras esportivas. O projeto foi construído com foco em boas práticas de desenvolvimento, segurança e manutenibilidade, servindo como um backend robusto para qualquer aplicação frontend (web ou mobile).
 
-## ✨ Funcionalidades Principais
+##  Funcionalidades Principais
 
 - **Gerenciamento de Usuários**: Sistema de CRUD completo para os usuários da plataforma
 - **Gerenciamento de Quadras**: CRUD para as quadras disponíveis para reserva, com filtros por tipo de esporte
@@ -14,7 +14,7 @@ O **CourtReserve** é uma API RESTful completa e segura, desenvolvida em Java co
 - **Ambiente Containerizado**: Banco de dados PostgreSQL rodando em um contêiner **Docker**
 - **Documentação Swagger**: Interface interativa para documentação e teste dos endpoints da API
 
-## 🔧 Tecnologias Utilizadas
+##  Tecnologias Utilizadas
 
 | Tecnologia | Descrição |
 |------------|-----------|
@@ -28,7 +28,7 @@ O **CourtReserve** é uma API RESTful completa e segura, desenvolvida em Java co
 | **Maven** | Ferramenta de gerenciamento de dependências e build do projeto |
 | **Swagger/OpenAPI** | Documentação interativa da API |
 
-## 🚀 Como Executar o Projeto
+##  Como Executar o Projeto
 
 Siga os passos abaixo para configurar e rodar o ambiente de desenvolvimento localmente.
 
@@ -70,8 +70,8 @@ Explore os endpoints: Todos os controladores (Auth, User, Court, Booking) estão
 Teste os endpoints: Use o botão "Try it out" para fazer requisições diretamente pela interface
 Autenticação: Clique no botão "Authorize" para configurar o Bearer Token JWT
 
-📚 Uso da API
-🔑 Autenticação (Fluxo JWT)
+ Uso da API
+ Autenticação (Fluxo JWT)
 A API utiliza autenticação via Bearer Token (JWT). O fluxo é o seguinte:
 Passo 1: Registrar um novo usuário
 Primeiro, crie uma conta. Este endpoint é público.
@@ -102,14 +102,14 @@ Copie o token recebido e use-o para acessar todos os outros endpoints. No Swagge
 Endpoints Protegidos (Exemplos)
 Nota: Todos os endpoints abaixo exigem o Bearer Token no cabeçalho Authorization.
 # Usuários (/users)
-GET /court_reserve/users
-
-Lista todos os usuários
+GET /court_reserve/users (Lista todos os usuários)
 
 
-GET /court_reserve/users/{id}
 
-Busca um usuário por ID
+
+GET /court_reserve/users/{id} (Busca um usuário por ID)
+
+
 
 
 POST /court_reserve/users
@@ -123,14 +123,14 @@ Body (JSON):
       }
 
       
-DELETE /court_reserve/users/{id}
+DELETE /court_reserve/users/{id} (Deleta um usuário por ID
+)
 
-Deleta um usuário por ID
 
 
-PATCH /court_reserve/users/{id}/password
+PATCH /court_reserve/users/{id}/password (Atualiza a senha do usuário)
 
-Atualiza a senha do usuário
+
 Body (JSON):
 
       json{
@@ -140,19 +140,19 @@ Body (JSON):
 
       
 # Quadras (/courts)
-GET /court_reserve/courts
-
-Lista todas as quadras
+GET /court_reserve/courts (Lista todas as quadras)
 
 
-GET /court_reserve/courts/{id}
-
-Busca uma quadra por ID
 
 
-POST /court_reserve/courts
+GET /court_reserve/courts/{id} (Busca uma quadra por ID)
 
-Cria uma nova quadra
+
+
+
+POST /court_reserve/courts (Cria uma nova quadra)
+
+
 Body (JSON):
 
       json{
@@ -162,9 +162,9 @@ Body (JSON):
       }
 
       
-PATCH /court_reserve/courts/{id}
+PATCH /court_reserve/courts/{id} (Atualiza uma quadra)
 
-Atualiza uma quadra
+
 Body (JSON):
 
       json{
@@ -174,25 +174,25 @@ Body (JSON):
       }
 
       
-DELETE /court_reserve/courts/{id}
+DELETE /court_reserve/courts/{id} (Deleta uma quadra)
 
-Deleta uma quadra
+
 
 
 # Agendamentos (/bookings)
-GET /court_reserve/bookings
-
-Lista todos os agendamentos
+GET /court_reserve/bookings (Lista todos os agendamentos)
 
 
-GET /court_reserve/bookings/{id}
-
-Busca um agendamento por ID
 
 
-POST /court_reserve/bookings
+GET /court_reserve/bookings/{id} (Busca um agendamento por ID)
 
-Cria um novo agendamento
+
+
+
+POST /court_reserve/bookings (Cria um novo agendamento)
+
+
 Body (JSON):
 
       json{
@@ -204,9 +204,9 @@ Body (JSON):
       }
 
       
-PATCH /court_reserve/bookings/{id}
+PATCH /court_reserve/bookings/{id}  (Atualiza um agendamento)
 
-Atualiza um agendamento
+
 Body (JSON):
 
       json{
@@ -215,9 +215,9 @@ Body (JSON):
       }
 
       
-DELETE /court_reserve/bookings/{id}
+DELETE /court_reserve/bookings/{id} (Cancela um agendamento)
 
-Cancela um agendamento
+
 
 
 
