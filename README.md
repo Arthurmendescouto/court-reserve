@@ -51,7 +51,7 @@ bashdocker-compose up -d
 Execute a aplicação Spring Boot.
 Pronto! A API estará rodando em http://localhost:8080
 
-## 📖 Documentação da API
+##  Documentação da API
 Swagger UI
 A API possui documentação interativa gerada automaticamente com Swagger. Após executar a aplicação, acesse:
 🔗 http://localhost:8080/swagger-ui/index.html
@@ -221,5 +221,5 @@ DELETE /court_reserve/bookings/{id} (Cancela um agendamento)
 
 
 
-📜 Licença
+ Licença
 Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
