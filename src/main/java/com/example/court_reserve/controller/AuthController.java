@@ -1,15 +1,5 @@
 package com.example.court_reserve.controller;
 
-import com.example.court_reserve.config.TokenService;
-import com.example.court_reserve.controller.request.LoginRequest;
-import com.example.court_reserve.controller.request.UserRequest;
-import com.example.court_reserve.controller.response.LoginResponse;
-import com.example.court_reserve.controller.response.UserResponse;
-import com.example.court_reserve.entity.User;
-import com.example.court_reserve.mapper.UserMapper;
-import com.example.court_reserve.service.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +10,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.court_reserve.config.TokenService;
+import com.example.court_reserve.controller.request.LoginRequest;
+import com.example.court_reserve.controller.request.UserRequest;
+import com.example.court_reserve.controller.response.LoginResponse;
+import com.example.court_reserve.controller.response.UserResponse;
+import com.example.court_reserve.entity.User;
+import com.example.court_reserve.mapper.UserMapper;
+import com.example.court_reserve.service.UserService;
+
+import io.swagger.v3.oas.annotations.tags.Tag;
+import lombok.RequiredArgsConstructor;
+
+@Tag(name = "Auth", description = "Recursos de autenticação e registro de usuário.")
 @RestController
 @RequestMapping("/court_reserve/auth")
 @RequiredArgsConstructor
@@ -30,8 +33,8 @@ public class AuthController {
     private final TokenService tokenService;
     @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@RequestBody UserRequest request){
-    User savedUser=userService.save(UserMapper.toUser(request));
-    return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toUserResponse(savedUser));
+        User savedUser=userService.save(UserMapper.toUser(request));
+        return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toUserResponse(savedUser));
     }
 
     @PostMapping("/login")

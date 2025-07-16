@@ -9,6 +9,11 @@ import com.example.court_reserve.mapper.BookingMapper;
 import com.example.court_reserve.service.BookingService;
 import com.example.court_reserve.service.CourtService;
 import com.example.court_reserve.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -16,23 +21,26 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+@Builder
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("/court_reserve/bookings")
 @RequiredArgsConstructor
+@Tag(name = "Booking",description = "Recurso responsável pelos agendamentos.")
 public class BookingController {
 
     private final BookingService bookingService;
     private final CourtService courtService;
     private final UserService userService;
-
+    @Operation(summary = "Buscar horários",description = "busca os horários agendados.")
+    @ApiResponse(responseCode = "201",description ="Lista de agendamentos revelada com sucesso." )
     @GetMapping
     public ResponseEntity<List<BookingResponse>> getAllBookings(){
         List<BookingResponse> bookings=bookingService.findAll()
                 .stream()
                 .map(booking -> BookingMapper.toBookingResponse(booking))
                 .toList();
-         return ResponseEntity.ok(bookings);
+        return ResponseEntity.ok(bookings);
     }
     @GetMapping("/{id}")
     public ResponseEntity<BookingResponse> getByBookingId(@PathVariable Long id){
