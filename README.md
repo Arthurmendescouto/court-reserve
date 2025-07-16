@@ -101,12 +101,19 @@ Passo 3: Acessar Endpoints Protegidos
 Copie o token recebido e use-o para acessar todos os outros endpoints. No Swagger UI, clique no botão "Authorize" e cole o token no campo "Value" para autenticar suas requisições.
 Endpoints Protegidos (Exemplos)
 Nota: Todos os endpoints abaixo exigem o Bearer Token no cabeçalho Authorization.
-Usuários (/users)
+# Usuários (/users)
 GET /court_reserve/users
+
 Lista todos os usuários
+
+
 GET /court_reserve/users/{id}
+
 Busca um usuário por ID
+
+
 POST /court_reserve/users
+
 Cria um novo usuário
 Body (JSON):
 
@@ -114,9 +121,15 @@ Body (JSON):
     "email": "usuario@exemplo.com",
     "password": "senha123"
       }
+
+      
 DELETE /court_reserve/users/{id}
+
 Deleta um usuário por ID
+
+
 PATCH /court_reserve/users/{id}/password
+
 Atualiza a senha do usuário
 Body (JSON):
 
@@ -124,12 +137,21 @@ Body (JSON):
 
     "password": "nova-senha-segura"
       }
-Quadras (/courts)
+
+      
+# Quadras (/courts)
 GET /court_reserve/courts
+
 Lista todas as quadras
+
+
 GET /court_reserve/courts/{id}
+
 Busca uma quadra por ID
+
+
 POST /court_reserve/courts
+
 Cria uma nova quadra
 Body (JSON):
 
@@ -138,7 +160,10 @@ Body (JSON):
     "sportType": "FOOTBALL",
     "description": "Quadra de futebol com grama sintética"
       }
+
+      
 PATCH /court_reserve/courts/{id}
+
 Atualiza uma quadra
 Body (JSON):
 
@@ -147,14 +172,26 @@ Body (JSON):
     "name": "Quadra de Futebol 1 - Atualizada",
     "description": "Quadra reformada com nova iluminação"
       }
+
+      
 DELETE /court_reserve/courts/{id}
+
 Deleta uma quadra
-Agendamentos (/bookings)
+
+
+# Agendamentos (/bookings)
 GET /court_reserve/bookings
+
 Lista todos os agendamentos
+
+
 GET /court_reserve/bookings/{id}
+
 Busca um agendamento por ID
+
+
 POST /court_reserve/bookings
+
 Cria um novo agendamento
 Body (JSON):
 
@@ -165,7 +202,10 @@ Body (JSON):
     "startTime": "2024-12-15T10:00:00",
     "endTime": "2024-12-15T11:00:00"
       }
+
+      
 PATCH /court_reserve/bookings/{id}
+
 Atualiza um agendamento
 Body (JSON):
 
@@ -173,7 +213,13 @@ Body (JSON):
 
     "endTime": "2024-12-15T15:00:00"
       }
+
+      
 DELETE /court_reserve/bookings/{id}
+
 Cancela um agendamento
+
+
+
 📜 Licença
 Este projeto está sob a licença MIT. Veja o arquivo LICENSE para mais detalhes.
