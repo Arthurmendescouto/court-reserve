@@ -3,6 +3,7 @@ package com.example.court_reserve.controller;
 import java.util.List;
 import java.util.Map;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.RequiredArgsConstructor;
 @SecurityRequirement(name = "bearerAuth")
+@Tag(name = "Court",description = "Recurso responsável pelas quadras.")
 @RestController
 @RequestMapping("/court_reserve/courts")
 @RequiredArgsConstructor

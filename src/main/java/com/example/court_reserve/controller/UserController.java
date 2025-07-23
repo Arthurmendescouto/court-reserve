@@ -3,6 +3,7 @@ package com.example.court_reserve.controller;
 import java.util.List;
 import java.util.Map;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,7 @@ import lombok.RequiredArgsConstructor;
         scheme = "bearer"
 )
 @SecurityRequirement(name = "bearerAuth")
+@Tag(name = "User",description = "Recurso responsável pelos usuários.")
 @RestController
 @RequestMapping("/court_reserve/users")
 @RequiredArgsConstructor
