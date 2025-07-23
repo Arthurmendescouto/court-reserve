@@ -31,6 +31,8 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST,"/court_reserve/auth/login").permitAll()
                         .requestMatchers(HttpMethod.GET,"/api/api-docs/**").permitAll()
                         .requestMatchers(HttpMethod.GET,"/swagger/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/court_reserve/auth/test-exception").permitAll()
+
 
                         .anyRequest().authenticated()
                 )

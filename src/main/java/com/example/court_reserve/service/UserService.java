@@ -33,14 +33,13 @@ public class UserService {
     public void  delete(Long id){
         repository.deleteById(id);
     }
-    public void updatePassword(Long id, UserRequest request) {
+    public void updatePassword(Long id, String newPassword) {
         User user = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
 
-        if (request.password() == null || request.password().isBlank()) {
-            throw new IllegalArgumentException("Senha não pode ser vazia");
-        }
-        user.setPassword(request.password());
+        String encodedPassword=passwordEncoder.encode(newPassword);
+
+        user.setPassword(encodedPassword);
 
         repository.save(user);
     }

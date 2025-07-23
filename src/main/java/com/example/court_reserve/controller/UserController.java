@@ -2,7 +2,9 @@ package com.example.court_reserve.controller;
 
 import java.util.List;
 
+import com.example.court_reserve.controller.request.PasswordUpdateRequest;
 import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -51,20 +53,15 @@ public class UserController {
                 .map(user -> ResponseEntity.ok(UserMapper.toUserResponse(user)))
                 .orElse(ResponseEntity.notFound().build());
     }
-    @PostMapping
-    public ResponseEntity<UserResponse> saveUser(@RequestBody UserRequest request){
-        User newUser= UserMapper.toUser(request);
-        User savedUser=userService.save(newUser);
-        return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toUserResponse(savedUser));
-    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteByUserId(@PathVariable Long id){
         userService.delete(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
     @PatchMapping("/{id}/password")
-    public ResponseEntity<Void> updatePassword(@PathVariable Long id, @RequestBody UserRequest request) {
-        userService.updatePassword(id, request);
+    public ResponseEntity<Void> updatePassword(@PathVariable Long id, @Valid @RequestBody PasswordUpdateRequest request) {
+        userService.updatePassword(id, request.password());
         return ResponseEntity.noContent().build();
     }
 }
