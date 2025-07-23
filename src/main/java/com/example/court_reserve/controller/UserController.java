@@ -3,6 +3,8 @@ package com.example.court_reserve.controller;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.boot.context.config.ConfigDataResourceNotFoundException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -78,7 +80,9 @@ public class UserController {
     @Operation(summary = "Deletar usuário", description = "Remove um usuário pelo ID.")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Usuário deletado com sucesso."),
-        @ApiResponse(responseCode = "403", description = "Acesso proibido.")
+            @ApiResponse(responseCode = "404", description = "usuário não encontrado."),
+            @ApiResponse(responseCode = "409",description ="Conflito. O usuário não pode ser deletado pois possui reservas associadas."),
+            @ApiResponse(responseCode = "403", description = "Acesso proibido.")
     })
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteByUserId(@PathVariable Long id){
@@ -97,5 +101,17 @@ public class UserController {
     public ResponseEntity<Void> updatePassword(@PathVariable Long id, @Valid @RequestBody PasswordUpdateRequest request) {
         userService.updatePassword(id, request.password());
         return ResponseEntity.noContent().build();
+    }
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Map<String, String>> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        String errorMessage = "Este usuário não pode ser excluído pois possui reservas associadas.";
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", errorMessage));
+    }
+    @ExceptionHandler(org.springframework.dao.EmptyResultDataAccessException.class)
+    public ResponseEntity<Map<String, String>> handleEmptyResult(org.springframework.dao.EmptyResultDataAccessException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of("error", "Usuário não encontrado. O ID informado não existe."));
     }
 }

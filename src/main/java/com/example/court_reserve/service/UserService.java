@@ -4,6 +4,7 @@ import com.example.court_reserve.controller.request.UserRequest;
 import com.example.court_reserve.entity.User;
 import com.example.court_reserve.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository repository;
     private final PasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
 
     public List<User> findAll(){
         return repository.findAll();
@@ -30,17 +32,20 @@ public class UserService {
         return repository.save(user);
     }
 
-    public void  delete(Long id){
-        repository.deleteById(id);
+    public void delete(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new EmptyResultDataAccessException("Usuário não encontrado com o ID: " + id, 1);
+        }
+        userRepository.deleteById(id);
     }
+
+
     public void updatePassword(Long id, String newPassword) {
-        User user = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new EmptyResultDataAccessException("Usuário não encontrado com o ID: " + id, 1));
 
-        String encodedPassword=passwordEncoder.encode(newPassword);
-
+        String encodedPassword = passwordEncoder.encode(newPassword);
         user.setPassword(encodedPassword);
-
-        repository.save(user);
+        userRepository.save(user);
     }
 }

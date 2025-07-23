@@ -1,17 +1,12 @@
 package com.example.court_reserve.controller;
 
 import java.util.List;
+import java.util.Map;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.example.court_reserve.controller.request.CourtRequest;
 import com.example.court_reserve.controller.response.CourtResponse;
@@ -74,6 +69,7 @@ public class CourtController {
     @Operation(summary = "Deletar quadra", description = "Remove uma quadra pelo ID.")
     @ApiResponses({
         @ApiResponse(responseCode = "204", description = "Quadra deletada com sucesso."),
+        @ApiResponse(responseCode = "409",description ="Conflito. A quadra não pode ser deletada pois possui reservas associadas."),
         @ApiResponse(responseCode = "403", description = "Acesso proibido.")
     })
     @DeleteMapping("/{id}")
@@ -94,5 +90,17 @@ public class CourtController {
         Court updatedCourt = courtService.updateCourt(id, request);
         return ResponseEntity.ok(CourtMapper.toCourtResponse(updatedCourt));
     }
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<Map<String, String>> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
 
+        String errorMessage = "Esta quadra não pode ser excluída pois possui reservas associadas.";
+
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(Map.of("error", errorMessage));
+    }
+    @ExceptionHandler(org.springframework.dao.EmptyResultDataAccessException.class)
+    public ResponseEntity<Map<String, String>> handleEmptyResult(org.springframework.dao.EmptyResultDataAccessException ex) {
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .body(Map.of("error", "Quadra não encontrada. O ID informado não existe."));
+    }
 }

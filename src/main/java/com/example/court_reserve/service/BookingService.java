@@ -5,6 +5,7 @@ import com.example.court_reserve.controller.request.BookingRequest;
 import com.example.court_reserve.entity.Booking;
 import com.example.court_reserve.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class BookingService {
     private final BookingRepository repository;
+    private final BookingRepository bookingRepository;
 
     public List<Booking> findAll() {
         return repository.findAll();
@@ -30,9 +32,11 @@ public class BookingService {
     }
 
     public void delete(Long id) {
-        repository.deleteById(id);
+        if (!bookingRepository.existsById(id)) {
+            throw new EmptyResultDataAccessException("Usuário não encontrado com o ID: " + id, 1);
+        }
+        bookingRepository.deleteById(id);
     }
-
     public Booking update(Long id, BookingRequest request) {
 
 
