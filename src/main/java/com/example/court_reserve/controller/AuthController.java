@@ -9,7 +9,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,8 +24,6 @@ import com.example.court_reserve.mapper.UserMapper;
 import com.example.court_reserve.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -43,34 +40,23 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final TokenService tokenService;
 
-    @Operation(summary = "Registra um novo usuário no sistema")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Usuário registrado com sucesso",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponse.class))),
-
-            @ApiResponse(responseCode = "400", description = "Dados inválidos: campos ausentes ou incorretos. Ex: senha com menos de 8 caracteres.",
-                    content = @Content(mediaType = "application/json", schema = @Schema(example = "{\"password\": \"A senha deve ter no mínimo 8 caracteres.\"}"))),
-
-            @ApiResponse(responseCode = "403", description = "Email já cadastrado ou acesso proibido.",
-                    content = @Content)
+    @Operation(summary = "Registrar novo usuário", description = "Registra um novo usuário no sistema.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Usuário registrado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Dados inválidos: campos ausentes ou incorretos. Ex: senha com menos de 8 caracteres."),
+            @ApiResponse(responseCode = "403", description = "Email já cadastrado ou acesso proibido.")
     })
-
     @PostMapping("/register")
     public ResponseEntity<UserResponse> register(@Valid @RequestBody UserRequest request) {
         User savedUser = userService.save(UserMapper.toUser(request));
         return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toUserResponse(savedUser));
     }
 
-    @Operation(summary = "Autentica um usuário no sistema e retorna um token JWT")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Login realizado com sucesso",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = LoginResponse.class))),
-
-            @ApiResponse(responseCode = "400", description = "Requisição inválida. Ex: campos obrigatórios ausentes ou mal formatados.",
-                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = Map.class))),
-
-            @ApiResponse(responseCode = "403", description = "Credenciais inválidas. Email ou senha incorretos.",
-                    content = @Content(mediaType = "application/json", schema = @Schema(example = "{\"error\": \"Credenciais inválidas\"}")))
+    @Operation(summary = "Login do usuário", description = "Autentica um usuário e retorna um token JWT.")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Login realizado com sucesso"),
+            @ApiResponse(responseCode = "400", description = "Requisição inválida. Ex: campos obrigatórios ausentes ou mal formatados."),
+            @ApiResponse(responseCode = "403", description = "Credenciais inválidas. Email ou senha incorretos.")
     })
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
