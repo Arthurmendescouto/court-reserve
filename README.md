@@ -2,7 +2,7 @@
 
 ## Sobre o Projeto
 
-O **CourtReserve** é uma API RESTful completa e segura, desenvolvida em Java com Spring Boot, para um sistema de gerenciamento e reserva de quadras esportivas. O projeto foi construído com foco em boas práticas de desenvolvimento, segurança e manutenibilidade, servindo como um backend robusto para qualquer aplicação frontend (web ou mobile).
+O **CourtReserve** é uma API RESTful completa e segura, desenvolvida em Java com Spring Boot e que possui deploy na nuvem através da Render, para um sistema de gerenciamento e reserva de quadras esportivas. O projeto foi construído com foco em boas práticas de desenvolvimento, segurança e manutenibilidade, servindo como um backend robusto para qualquer aplicação frontend (web ou mobile).
 
 Segue o link do swagger: [https://court-reserve.onrender.com/swagger/swagger-ui/index.html](https://court-reserve.onrender.com/swagger/index.html)
 
@@ -17,7 +17,7 @@ OBS: Pode ser necessário aguardar alguns minutos devido ao deploy realizado no 
 - **Migrações de Banco de Dados**: Versionamento de schema automatizado e confiável com **Flyway**
 - **Ambiente Containerizado**: Banco de dados PostgreSQL rodando em um contêiner **Docker**
 - **Documentação Swagger**: Interface interativa para documentação e teste dos endpoints da API
-
+  
 ##  Tecnologias Utilizadas
 
 | Tecnologia | Descrição |
