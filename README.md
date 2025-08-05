@@ -6,7 +6,7 @@ O **CourtReserve** é uma API RESTful completa e segura, desenvolvida em Java co
 
 Segue o link do swagger: [https://court-reserve.onrender.com/swagger/swagger-ui/index.html](https://court-reserve.onrender.com/swagger/index.html)
 
-OBS: Pode ser necessário aguardar alguns minutos devido ao deploy realizado no render de forma gratuita que possui essa limitação.
+Observação: Como o deploy foi realizado na versão gratuita do Render, pode ser necessário aguardar alguns minutos para que a aplicação fique disponível, devido às limitações do serviço.
 
 ##  Funcionalidades Principais
 
@@ -17,6 +17,7 @@ OBS: Pode ser necessário aguardar alguns minutos devido ao deploy realizado no 
 - **Migrações de Banco de Dados**: Versionamento de schema automatizado e confiável com **Flyway**
 - **Ambiente Containerizado**: Banco de dados PostgreSQL rodando em um contêiner **Docker**
 - **Documentação Swagger**: Interface interativa para documentação e teste dos endpoints da API
+- **Utilização de variáveis de Ambiente**: Para proteger as informações do banco de dados.
   
 ##  Tecnologias Utilizadas
 
